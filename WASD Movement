@@ -1,0 +1,29 @@
+public Rigidbody rb;
+
+    public float forwardForce = 1000f;
+    public float sideaysForce = 500f;
+    public bool wKey = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey("w"))
+            wKey = true;
+
+    }
+
+
+    // Update is called once per frame/framerate
+    void FixedUpdate()
+    {
+        if (wKey = true)
+            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+
+    }
+}

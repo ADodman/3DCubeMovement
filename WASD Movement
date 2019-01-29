@@ -1,29 +1,34 @@
-public Rigidbody rb;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-    public float forwardForce = 1000f;
-    public float sideaysForce = 500f;
-    public bool wKey = false;
+public class PlayerMovement : MonoBehaviour
+{
+    public Rigidbody rb;
+    public float speed = 20f;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey("w"))
-            wKey = true;
-
-    }
 
 
     // Update is called once per frame/framerate
-    void FixedUpdate()
+    void Update()
     {
-        if (wKey = true)
-            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+        // "Horizontal and Vertical default to WASD in Unity
+        //  GetAxis has range from 1 to -1
+        float hAxis = Input.GetAxis("Horizontal");
+        float vAxis = Input.GetAxis("Vertical");
+        // How quickly the player will move.
+        Vector3 movement = new Vector3(hAxis, 0, vAxis) * speed * Time.deltaTime;
+        //MovePosition moves the rigidbody rb to the position of the transform component and adds the vector3 movement.
+        rb.MovePosition(transform.position + movement);
 
     }
+
 }
